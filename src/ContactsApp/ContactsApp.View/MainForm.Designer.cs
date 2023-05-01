@@ -1,0 +1,196 @@
+﻿namespace ContactsApp.View
+{
+	partial class MainForm
+	{
+		/// <summary>
+		/// Обязательная переменная конструктора.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// Освободить все используемые ресурсы.
+		/// </summary>
+		/// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Код, автоматически созданный конструктором форм Windows
+
+		/// <summary>
+		/// Требуемый метод для поддержки конструктора — не изменяйте 
+		/// содержимое этого метода с помощью редактора кода.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.addContactButton = new System.Windows.Forms.Button();
+			this.editContactButton = new System.Windows.Forms.Button();
+			this.removeContactButton = new System.Windows.Forms.Button();
+			this.tableLayoutPanel1.SuspendLayout();
+			this.panel1.SuspendLayout();
+			this.tableLayoutPanel2.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// tableLayoutPanel1
+			// 
+			this.tableLayoutPanel1.ColumnCount = 2;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 1;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 461);
+			this.tableLayoutPanel1.TabIndex = 0;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.tableLayoutPanel2);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Controls.Add(this.textBox1);
+			this.panel1.Controls.Add(this.listBox1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(244, 455);
+			this.panel1.TabIndex = 0;
+			// 
+			// panel2
+			// 
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel2.Location = new System.Drawing.Point(253, 3);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(628, 455);
+			this.panel2.TabIndex = 1;
+			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.IntegralHeight = false;
+			this.listBox1.Location = new System.Drawing.Point(0, 29);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(244, 386);
+			this.listBox1.TabIndex = 0;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(45, 3);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(199, 20);
+			this.textBox1.TabIndex = 1;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(9, 6);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(30, 13);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "Find:";
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 3;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel2.Controls.Add(this.addContactButton, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.editContactButton, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.removeContactButton, 2, 0);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 415);
+			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 40);
+			this.tableLayoutPanel2.TabIndex = 3;
+			// 
+			// addContactButton
+			// 
+			this.addContactButton.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.addContactButton.FlatAppearance.BorderSize = 0;
+			this.addContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.addContactButton.Image = global::ContactsApp.View.Properties.Resources.add_contact_32x32_gray;
+			this.addContactButton.Location = new System.Drawing.Point(0, 0);
+			this.addContactButton.Margin = new System.Windows.Forms.Padding(0);
+			this.addContactButton.Name = "addContactButton";
+			this.addContactButton.Size = new System.Drawing.Size(81, 40);
+			this.addContactButton.TabIndex = 0;
+			this.addContactButton.UseVisualStyleBackColor = true;
+			// 
+			// editContactButton
+			// 
+			this.editContactButton.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.editContactButton.FlatAppearance.BorderSize = 0;
+			this.editContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.editContactButton.Image = global::ContactsApp.View.Properties.Resources.edit_contact_32x32_gray;
+			this.editContactButton.Location = new System.Drawing.Point(81, 0);
+			this.editContactButton.Margin = new System.Windows.Forms.Padding(0);
+			this.editContactButton.Name = "editContactButton";
+			this.editContactButton.Size = new System.Drawing.Size(81, 40);
+			this.editContactButton.TabIndex = 1;
+			this.editContactButton.UseVisualStyleBackColor = true;
+			// 
+			// removeContactButton
+			// 
+			this.removeContactButton.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.removeContactButton.FlatAppearance.BorderSize = 0;
+			this.removeContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.removeContactButton.Image = global::ContactsApp.View.Properties.Resources.remove_contact_32x32_gray;
+			this.removeContactButton.Location = new System.Drawing.Point(162, 0);
+			this.removeContactButton.Margin = new System.Windows.Forms.Padding(0);
+			this.removeContactButton.Name = "removeContactButton";
+			this.removeContactButton.Size = new System.Drawing.Size(82, 40);
+			this.removeContactButton.TabIndex = 2;
+			this.removeContactButton.UseVisualStyleBackColor = true;
+			// 
+			// MainForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(884, 461);
+			this.Controls.Add(this.tableLayoutPanel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Name = "MainForm";
+			this.Text = "ContactsApp";
+			this.tableLayoutPanel1.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.tableLayoutPanel2.ResumeLayout(false);
+			this.ResumeLayout(false);
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.Button addContactButton;
+		private System.Windows.Forms.Button editContactButton;
+		private System.Windows.Forms.Button removeContactButton;
+	}
+}
+
