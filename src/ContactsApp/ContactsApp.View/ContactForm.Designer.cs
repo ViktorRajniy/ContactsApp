@@ -39,8 +39,8 @@
 			this.fullNameLabel = new System.Windows.Forms.Label();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.OkButton = new System.Windows.Forms.Button();
 			this.CancelButton = new System.Windows.Forms.Button();
+			this.OkButton = new System.Windows.Forms.Button();
 			this.photoPictureBox = new System.Windows.Forms.PictureBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
@@ -148,16 +148,6 @@
 			this.panel1.Size = new System.Drawing.Size(584, 50);
 			this.panel1.TabIndex = 23;
 			// 
-			// OkButton
-			// 
-			this.OkButton.Location = new System.Drawing.Point(416, 15);
-			this.OkButton.Name = "OkButton";
-			this.OkButton.Size = new System.Drawing.Size(75, 23);
-			this.OkButton.TabIndex = 0;
-			this.OkButton.Text = "Ok";
-			this.OkButton.UseVisualStyleBackColor = true;
-			this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
-			// 
 			// CancelButton
 			// 
 			this.CancelButton.Location = new System.Drawing.Point(497, 15);
@@ -167,6 +157,16 @@
 			this.CancelButton.Text = "Cancel";
 			this.CancelButton.UseVisualStyleBackColor = true;
 			this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+			// 
+			// OkButton
+			// 
+			this.OkButton.Location = new System.Drawing.Point(416, 15);
+			this.OkButton.Name = "OkButton";
+			this.OkButton.Size = new System.Drawing.Size(75, 23);
+			this.OkButton.TabIndex = 0;
+			this.OkButton.Text = "Ok";
+			this.OkButton.UseVisualStyleBackColor = true;
+			this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
 			// 
 			// photoPictureBox
 			// 
@@ -196,6 +196,7 @@
 			this.Controls.Add(this.fullNameTextBox);
 			this.Controls.Add(this.fullNameLabel);
 			this.Controls.Add(this.photoPictureBox);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "ContactForm";
 			this.ShowIcon = false;
 			this.panel1.ResumeLayout(false);
