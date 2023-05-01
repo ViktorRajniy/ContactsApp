@@ -224,6 +224,7 @@
 			this.vkTextBox.Name = "vkTextBox";
 			this.vkTextBox.Size = new System.Drawing.Size(175, 20);
 			this.vkTextBox.TabIndex = 10;
+			this.vkTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.vkTextBox_KeyPress);
 			// 
 			// vkLabel
 			// 
@@ -241,6 +242,7 @@
 			this.dateBirthTextBox.Name = "dateBirthTextBox";
 			this.dateBirthTextBox.Size = new System.Drawing.Size(175, 20);
 			this.dateBirthTextBox.TabIndex = 8;
+			this.dateBirthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateBirthTextBox_KeyPress);
 			// 
 			// dateOfBirthLabel
 			// 
@@ -259,6 +261,7 @@
 			this.phoneTextBox4.Size = new System.Drawing.Size(175, 20);
 			this.phoneTextBox4.TabIndex = 6;
 			this.phoneTextBox4.Text = "+7 (996) 938-67-94";
+			this.phoneTextBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneTextBox4_KeyPress);
 			// 
 			// phoneNumberLabel
 			// 

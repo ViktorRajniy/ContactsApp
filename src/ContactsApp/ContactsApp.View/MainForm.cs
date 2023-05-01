@@ -82,5 +82,20 @@ namespace ContactsApp.View
 		{
 			birthdayPanel.Visible = false;
 		}
+
+		private void phoneTextBox4_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = true;
+		}
+
+		private void dateBirthTextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = true;
+		}
+
+		private void vkTextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = true;
+		}
 	}
 }
