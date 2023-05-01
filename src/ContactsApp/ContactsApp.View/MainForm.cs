@@ -77,5 +77,10 @@ namespace ContactsApp.View
 			var contactForm = new ContactForm();
 			contactForm.ShowDialog();
 		}
+
+		private void birthdayPanalCloseButton_Click(object sender, EventArgs e)
+		{
+			birthdayPanel.Visible = false;
+		}
 	}
 }

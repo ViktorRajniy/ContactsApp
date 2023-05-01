@@ -363,6 +363,7 @@
 			this.birthdayPanalCloseButton.Size = new System.Drawing.Size(32, 32);
 			this.birthdayPanalCloseButton.TabIndex = 3;
 			this.birthdayPanalCloseButton.UseVisualStyleBackColor = true;
+			this.birthdayPanalCloseButton.Click += new System.EventHandler(this.birthdayPanalCloseButton_Click);
 			// 
 			// birthdayPictureBox
 			// 
