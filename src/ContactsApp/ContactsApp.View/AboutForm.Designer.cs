@@ -101,13 +101,16 @@
 			// 
 			// textBox1
 			// 
+			this.textBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textBox1.Location = new System.Drawing.Point(18, 151);
 			this.textBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox1.Size = new System.Drawing.Size(504, 139);
 			this.textBox1.TabIndex = 5;
 			this.textBox1.Text = resources.GetString("textBox1.Text");
+			this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
 			// 
 			// label6
 			// 
