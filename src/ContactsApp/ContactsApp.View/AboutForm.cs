@@ -31,5 +31,10 @@ namespace ContactsApp.View
 		{
 			DialogResult=DialogResult.OK;
 		}
+
+		private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled=true;
+		}
 	}
 }
