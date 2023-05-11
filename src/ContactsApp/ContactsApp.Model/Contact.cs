@@ -112,7 +112,7 @@ namespace ContactsApp.Model
 				}
 				else
 				{
-				throw new ArgumentException("Номер телефона введён неверно.");
+					throw new ArgumentException("Номер телефона введён неверно.");
 				}
 			}
 		}
@@ -124,7 +124,17 @@ namespace ContactsApp.Model
 		{
 			get => _vkID;
 
-			set => _vkID = value;
+
+			set
+			{
+				if (value.Length < MaxVKIdLength)
+				{
+					_vkID = value;
+				}
+				else
+					throw new ArgumentException(
+						"Ссылка вк слишком длинная.");
+			}
 		}
 
 		/// <summary>
