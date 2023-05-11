@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ContactsApp.Model
 {
-	internal class Contact
+	public class Contact
 	{
 		/// <summary>
 		/// Допустимые символы в номере телефона.
@@ -67,12 +68,12 @@ namespace ContactsApp.Model
 					if (value != "")
 						_fullName = value;
 					else
-						throw new Exception(
+						throw new ArgumentException(
 							"Имя не может быть пустым.");
 
 				}
 				else
-					throw new Exception(
+					throw new ArgumentException(
 						"Имя слишком длинное.");
 			}
 		}
@@ -91,7 +92,7 @@ namespace ContactsApp.Model
 					_email = value;
 				}
 				else
-					throw new Exception("Адрес почты слишком длинный.");
+					throw new ArgumentException("Адрес почты слишком длинный.");
 			}
 		}
 
@@ -104,8 +105,15 @@ namespace ContactsApp.Model
 
 			set
 			{
-				//todo Валидация номера телефона
-				throw new Exception("Адрес почты слишком длинный.");
+				string pattern = @"^\+\d{1}\(\d{3}\)\-\d{3}\-\d{2}\-\d{2}";
+				if (Regex.IsMatch(value, pattern))
+				{
+					_phone = value;
+				}
+				else
+				{
+				throw new ArgumentException("Номер телефона введён неверно.");
+				}
 			}
 		}
 
@@ -130,12 +138,12 @@ namespace ContactsApp.Model
 			{
 				if (DateTime.Compare(value, DateTime.Today) > 0)
 				{
-					throw new Exception(
+					throw new ArgumentException(
 						"День рождения не может позднее сегодня.");
 				}
 				if (value.Date.Year == 1900)
 				{
-					throw new Exception(
+					throw new ArgumentException(
 						"Дата рождения не может быть раньше 1900 года.");
 				}
 				_dateOfBirth = value;
@@ -146,7 +154,7 @@ namespace ContactsApp.Model
 		/// <summary>
 		/// Конструктор класса <see cref="Contact"/>.
 		/// </summary>
-		public Contact() : this("", "", "", DateTime.Today, "")
+		public Contact() : this("Nothing", "someadress@mail.ru", "+0(000)-000-00-00", DateTime.Today, "vkid")
 		{
 		}
 
