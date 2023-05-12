@@ -1,6 +1,8 @@
 ﻿using ContactsApp.Model;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace ContactsApp.View
@@ -37,8 +39,52 @@ namespace ContactsApp.View
 		/// </summary>
 		private void AddContact()
 		{
-			Contact contact = new Contact();
+			List<string> _names = new List<string> {
+				"Элайджа Вуд",
+				"Иэн Маккелен",
+				"Вигго Мортенсен",
+				"Шон Бин",
+				"Орландо Блум",
+				"Джон Рин-Девис",
+				"Иэн Холм",
+				"Иванов",
+				"Петров",
+				"Сидоров",
+				"Лукодёргов",
+				"Янушев",
+				"Ватрушкин" };
+			Random random = new Random();
+			Contact contact = new Contact(_names[random.Next(1,_names.Count)],"", "+0(000)-000-00-00", DateTime.Today,"");
 			_project.Contacts.Add(contact);
+		}
+
+		/// <summary>
+		/// Удаляет контакт.
+		/// </summary>
+		/// <param name="index"></param>
+		private void RemoveContact(int index)
+		{
+			if(index == -1)
+			{
+				return;
+			}
+			DialogResult result = MessageBox.Show("Do you really want to remove " + 
+				_project.Contacts[index].FullName+
+				"?","", MessageBoxButtons.OKCancel);
+			if(result == DialogResult.OK)
+			{
+				_project.Contacts.RemoveAt(index);
+			}
+			UpdateListBox();
+		}
+
+		/// <summary>
+		/// Событие, обновляющее данные на панели справа.
+		/// </summary>
+		/// <param name="index"></param>
+		private void UpdateSelectedContact(int index)
+		{
+
 		}
 
 		private void RemoveContactButton_MouseLeave(object sender, EventArgs e)
@@ -77,10 +123,19 @@ namespace ContactsApp.View
 			AddContactButton.BackColor = Color.White;
 		}
 
+		/// <summary>
+		/// Событиые, добавляющее контакт.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void AddContactButton_Click(object sender, EventArgs e)
 		{
 			var contactForm = new ContactForm();
-			contactForm.ShowDialog();
+			if(contactForm.ShowDialog() == DialogResult.OK)
+			{
+				AddContact();
+			}
+			UpdateListBox();
 		}
 
 		private void emailTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -102,10 +157,19 @@ namespace ContactsApp.View
 			}
 		}
 
+		/// <summary>
+		/// Событие, редактирующее контакт.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void EditContactButton_Click(object sender, EventArgs e)
 		{
 			var contactForm = new ContactForm();
-			contactForm.ShowDialog();
+			if (contactForm.ShowDialog() == DialogResult.OK)
+			{
+				AddContact();
+			}
+			UpdateListBox();
 		}
 
 		private void birthdayPanalCloseButton_Click(object sender, EventArgs e)
@@ -126,6 +190,17 @@ namespace ContactsApp.View
 		private void vkTextBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
+		}
+
+		/// <summary>
+		/// Событие, удаляющее контакт из списка контактов.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void RemoveContactButton_Click(object sender, EventArgs e)
+		{
+			RemoveContact(contactsListBox.SelectedIndex);
+			UpdateListBox();
 		}
 	}
 }
