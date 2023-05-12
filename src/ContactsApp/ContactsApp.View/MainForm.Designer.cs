@@ -310,7 +310,6 @@
 			this.phoneTextBox.Name = "phoneTextBox";
 			this.phoneTextBox.Size = new System.Drawing.Size(175, 20);
 			this.phoneTextBox.TabIndex = 6;
-			this.phoneTextBox.Text = "+7 (996) 938-67-94";
 			this.phoneTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneTextBox4_KeyPress);
 			// 
 			// phoneNumberLabel
@@ -331,7 +330,6 @@
 			this.emailTextBox.Name = "emailTextBox";
 			this.emailTextBox.Size = new System.Drawing.Size(506, 20);
 			this.emailTextBox.TabIndex = 4;
-			this.emailTextBox.Text = "rajniyviktor@yandex.ru";
 			this.emailTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.emailTextBox_KeyPress);
 			// 
 			// emailLabel
@@ -352,7 +350,6 @@
 			this.fullNameTextBox.Name = "fullNameTextBox";
 			this.fullNameTextBox.Size = new System.Drawing.Size(506, 20);
 			this.fullNameTextBox.TabIndex = 2;
-			this.fullNameTextBox.Text = "Оксингерт Виктор Константинович";
 			this.fullNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.fullNameTextBox_KeyPress);
 			// 
 			// fullNameLabel
@@ -385,6 +382,7 @@
 			this.KeyPreview = true;
 			this.Name = "MainForm";
 			this.Text = "ContactsApp";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
 			this.mainTableLayoutPanel.ResumeLayout(false);
 			this.contactPanel.ResumeLayout(false);

@@ -55,7 +55,12 @@ namespace ContactsApp.View
 				"Янушев",
 				"Ватрушкин" };
 			Random random = new Random();
-			Contact contact = new Contact(_names[random.Next(1, _names.Count)], "", "+0(000)-000-00-00", DateTime.Today, "");
+			Contact contact = new Contact(
+				_names[random.Next(1, _names.Count)], 
+				"", 
+				"+0(000)-000-00-00",
+				DateTime.Today, 
+				"");
 			_project.Contacts.Add(contact);
 		}
 
@@ -231,6 +236,18 @@ namespace ContactsApp.View
 				ClearSelectedContact();
 			else
 				UpdateSelectedContact(contactsListBox.SelectedIndex);
+		}
+
+		/// <summary>
+		/// Событие, вызывающее диалог при закрытии программы.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			DialogResult result = MessageBox.Show("Do you really want to leave?", "", MessageBoxButtons.OKCancel);
+			if (result == DialogResult.Cancel)
+				e.Cancel = true;
 		}
 	}
 }
