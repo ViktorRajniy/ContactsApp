@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactsApp.Model;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,9 +7,38 @@ namespace ContactsApp.View
 {
 	public partial class MainForm : Form
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		private Project _project = new Project();
+
+		/// <summary>
+		/// Главная форма программы.
+		/// </summary>
 		public MainForm()
 		{
 			InitializeComponent();
+		}
+
+		/// <summary>
+		/// Обновляет список контактов.
+		/// </summary>
+		private void UpdateListBox()
+		{
+			contactsListBox.Items.Clear();
+			foreach (Contact contact in _project.Contacts)
+			{
+				contactsListBox.Items.Add(contact.FullName);
+			}
+		}
+
+		/// <summary>
+		/// Добавляет новый контакт.
+		/// </summary>
+		private void AddContact()
+		{
+			Contact contact = new Contact();
+			_project.Contacts.Add(contact);
 		}
 
 		private void RemoveContactButton_MouseLeave(object sender, EventArgs e)
