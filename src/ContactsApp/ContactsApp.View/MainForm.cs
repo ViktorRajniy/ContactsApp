@@ -84,7 +84,11 @@ namespace ContactsApp.View
 		/// <param name="index"></param>
 		private void UpdateSelectedContact(int index)
 		{
-
+			fullNameTextBox.Text = _project.Contacts[index].FullName;
+			emailTextBox.Text = _project.Contacts[index].Email;
+			phoneTextBox.Text = _project.Contacts[index].Phone;
+			vkTextBox.Text = _project.Contacts[index].VKID;
+			dateBirthTextBox.Text = _project.Contacts[index].DateOfBirth.ToString();
 		}
 
 		private void RemoveContactButton_MouseLeave(object sender, EventArgs e)

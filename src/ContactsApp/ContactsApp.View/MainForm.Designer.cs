@@ -48,7 +48,7 @@
 			this.vkLabel = new System.Windows.Forms.Label();
 			this.dateBirthTextBox = new System.Windows.Forms.TextBox();
 			this.dateOfBirthLabel = new System.Windows.Forms.Label();
-			this.phoneTextBox4 = new System.Windows.Forms.TextBox();
+			this.phoneTextBox = new System.Windows.Forms.TextBox();
 			this.phoneNumberLabel = new System.Windows.Forms.Label();
 			this.emailTextBox = new System.Windows.Forms.TextBox();
 			this.emailLabel = new System.Windows.Forms.Label();
@@ -194,7 +194,7 @@
 			this.infoPanel.Controls.Add(this.vkLabel);
 			this.infoPanel.Controls.Add(this.dateBirthTextBox);
 			this.infoPanel.Controls.Add(this.dateOfBirthLabel);
-			this.infoPanel.Controls.Add(this.phoneTextBox4);
+			this.infoPanel.Controls.Add(this.phoneTextBox);
 			this.infoPanel.Controls.Add(this.phoneNumberLabel);
 			this.infoPanel.Controls.Add(this.emailTextBox);
 			this.infoPanel.Controls.Add(this.emailLabel);
@@ -303,14 +303,14 @@
 			this.dateOfBirthLabel.TabIndex = 7;
 			this.dateOfBirthLabel.Text = "Date of Birth:";
 			// 
-			// phoneTextBox4
+			// phoneTextBox
 			// 
-			this.phoneTextBox4.Location = new System.Drawing.Point(113, 119);
-			this.phoneTextBox4.Name = "phoneTextBox4";
-			this.phoneTextBox4.Size = new System.Drawing.Size(175, 20);
-			this.phoneTextBox4.TabIndex = 6;
-			this.phoneTextBox4.Text = "+7 (996) 938-67-94";
-			this.phoneTextBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneTextBox4_KeyPress);
+			this.phoneTextBox.Location = new System.Drawing.Point(113, 119);
+			this.phoneTextBox.Name = "phoneTextBox";
+			this.phoneTextBox.Size = new System.Drawing.Size(175, 20);
+			this.phoneTextBox.TabIndex = 6;
+			this.phoneTextBox.Text = "+7 (996) 938-67-94";
+			this.phoneTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.phoneTextBox4_KeyPress);
 			// 
 			// phoneNumberLabel
 			// 
@@ -419,7 +419,7 @@
 		private System.Windows.Forms.Label vkLabel;
 		private System.Windows.Forms.TextBox dateBirthTextBox;
 		private System.Windows.Forms.Label dateOfBirthLabel;
-		private System.Windows.Forms.TextBox phoneTextBox4;
+		private System.Windows.Forms.TextBox phoneTextBox;
 		private System.Windows.Forms.Label phoneNumberLabel;
 		private System.Windows.Forms.TextBox emailTextBox;
 		private System.Windows.Forms.Panel birthdayPanel;
