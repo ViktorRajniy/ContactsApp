@@ -11,7 +11,7 @@ namespace ContactsApp.View
 	public partial class MainForm : Form
 	{
 		/// <summary>
-		/// 
+		/// Объект, отвечающий за список контактов и сортировки.
 		/// </summary>
 		private Project _project = new Project();
 
@@ -109,36 +109,66 @@ namespace ContactsApp.View
 			dateBirthTextBox.Text = "";
 		}
 
+		/// <summary>
+		/// Событие, меняющее цвет кнопки удаления контакта на серый.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void RemoveContactButton_MouseLeave(object sender, EventArgs e)
 		{
 			RemoveContactButton.Image = Properties.Resources.remove_contact_32x32_gray;
 			RemoveContactButton.BackColor = Color.White;
 		}
 
+		/// <summary>
+		/// Событие, меняющее цвет кнопки удаления контакта на красный.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void RemoveContactButton_MouseEnter(object sender, EventArgs e)
 		{
 			RemoveContactButton.Image = Properties.Resources.remove_contact_32x32;
 			RemoveContactButton.BackColor = ColorTranslator.FromHtml("#FAF5F5");
 		}
 
+		/// <summary>
+		/// Событие, меняющее цвет кнопки редактирования контакта на синий.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void EditContactButton_MouseEnter(object sender, EventArgs e)
 		{
 			EditContactButton.Image = Properties.Resources.edit_contact_32x32;
 			EditContactButton.BackColor = ColorTranslator.FromHtml("#F5F5FF");
 		}
 
+		/// <summary>
+		/// Событие, меняющее цвет кнопки редактирования контакта на серый.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void EditContactButton_MouseLeave(object sender, EventArgs e)
 		{
 			EditContactButton.Image = Properties.Resources.edit_contact_32x32_gray;
 			EditContactButton.BackColor = Color.White;
 		}
 
+		/// <summary>
+		/// Событие, меняющее цвет кнопки добавления контакта на синий.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void AddContactButton_MouseEnter(object sender, EventArgs e)
 		{
 			AddContactButton.Image = Properties.Resources.add_contact_32x32;
 			AddContactButton.BackColor = ColorTranslator.FromHtml("#F5F5FF");
 		}
 
+		/// <summary>
+		/// Событие, меняющее цвет кнопки добавления контакта на серый.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void AddContactButton_MouseLeave(object sender, EventArgs e)
 		{
 			AddContactButton.Image = Properties.Resources.add_contact_32x32_gray;
@@ -160,16 +190,31 @@ namespace ContactsApp.View
 			UpdateListBox();
 		}
 
+		/// <summary>
+		/// Событие, блокирующее ввод текста в поле с почтой контакта.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void emailTextBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Событие, блокирующее ввод текста в поле с именем контакта.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void fullNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Событие, выводящее окно About при нажатии F1.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.F1)
@@ -194,21 +239,41 @@ namespace ContactsApp.View
 			UpdateListBox();
 		}
 
+		/// <summary>
+		/// Событие, скрывающее оповещение о днях рождения.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void birthdayPanalCloseButton_Click(object sender, EventArgs e)
 		{
 			birthdayPanel.Visible = false;
 		}
 
+		/// <summary>
+		/// Событие, блокирующее ввод текста в поле номера телефона.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void phoneTextBox4_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Событие, блокирующее ввод текста в поле даты рождения.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void dateBirthTextBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
 		}
 
+		/// <summary>
+		/// Событие, блокирующее ввод текста в поле ссылки ВК.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void vkTextBox_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
