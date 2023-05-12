@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -54,7 +55,7 @@ namespace ContactsApp.View
 				"Янушев",
 				"Ватрушкин" };
 			Random random = new Random();
-			Contact contact = new Contact(_names[random.Next(1,_names.Count)],"", "+0(000)-000-00-00", DateTime.Today,"");
+			Contact contact = new Contact(_names[random.Next(1, _names.Count)], "", "+0(000)-000-00-00", DateTime.Today, "");
 			_project.Contacts.Add(contact);
 		}
 
@@ -64,14 +65,14 @@ namespace ContactsApp.View
 		/// <param name="index"></param>
 		private void RemoveContact(int index)
 		{
-			if(index == -1)
+			if (index == -1)
 			{
 				return;
 			}
-			DialogResult result = MessageBox.Show("Do you really want to remove " + 
-				_project.Contacts[index].FullName+
-				"?","", MessageBoxButtons.OKCancel);
-			if(result == DialogResult.OK)
+			DialogResult result = MessageBox.Show("Do you really want to remove " +
+				_project.Contacts[index].FullName +
+				"?", "", MessageBoxButtons.OKCancel);
+			if (result == DialogResult.OK)
 			{
 				_project.Contacts.RemoveAt(index);
 			}
@@ -89,6 +90,18 @@ namespace ContactsApp.View
 			phoneTextBox.Text = _project.Contacts[index].Phone;
 			vkTextBox.Text = _project.Contacts[index].VKID;
 			dateBirthTextBox.Text = _project.Contacts[index].DateOfBirth.ToString();
+		}
+
+		/// <summary>
+		/// Очищает все поля панели справа.
+		/// </summary>
+		private void ClearSelectedContact()
+		{
+			fullNameTextBox.Text = "";
+			emailTextBox.Text = "";
+			phoneTextBox.Text = "";
+			vkTextBox.Text = "";
+			dateBirthTextBox.Text = "";
 		}
 
 		private void RemoveContactButton_MouseLeave(object sender, EventArgs e)
@@ -135,7 +148,7 @@ namespace ContactsApp.View
 		private void AddContactButton_Click(object sender, EventArgs e)
 		{
 			var contactForm = new ContactForm();
-			if(contactForm.ShowDialog() == DialogResult.OK)
+			if (contactForm.ShowDialog() == DialogResult.OK)
 			{
 				AddContact();
 			}
@@ -154,7 +167,7 @@ namespace ContactsApp.View
 
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
 		{
-			if(e.KeyCode == Keys.F1)
+			if (e.KeyCode == Keys.F1)
 			{
 				var aboutForm = new AboutForm();
 				aboutForm.ShowDialog();
@@ -205,6 +218,19 @@ namespace ContactsApp.View
 		{
 			RemoveContact(contactsListBox.SelectedIndex);
 			UpdateListBox();
+		}
+
+		/// <summary>
+		/// Событие, меняющее данные в панели справа.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void contactsListBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (contactsListBox.SelectedIndex == -1)
+				ClearSelectedContact();
+			else
+				UpdateSelectedContact(contactsListBox.SelectedIndex);
 		}
 	}
 }

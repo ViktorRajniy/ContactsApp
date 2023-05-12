@@ -183,6 +183,7 @@
 			this.contactsListBox.Name = "contactsListBox";
 			this.contactsListBox.Size = new System.Drawing.Size(244, 386);
 			this.contactsListBox.TabIndex = 0;
+			this.contactsListBox.SelectedIndexChanged += new System.EventHandler(this.contactsListBox_SelectedIndexChanged);
 			// 
 			// infoPanel
 			// 
