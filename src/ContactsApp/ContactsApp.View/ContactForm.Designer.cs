@@ -31,19 +31,21 @@
 			this.vkTextBox = new System.Windows.Forms.TextBox();
 			this.vkLabel = new System.Windows.Forms.Label();
 			this.dateOfBirthLabel = new System.Windows.Forms.Label();
-			this.phoneTextBox4 = new System.Windows.Forms.TextBox();
+			this.phoneTextBox = new System.Windows.Forms.TextBox();
 			this.phoneNumberLabel = new System.Windows.Forms.Label();
 			this.emailTextBox = new System.Windows.Forms.TextBox();
 			this.emailLabel = new System.Windows.Forms.Label();
 			this.fullNameTextBox = new System.Windows.Forms.TextBox();
 			this.fullNameLabel = new System.Windows.Forms.Label();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.DateOfBirthPicker = new System.Windows.Forms.DateTimePicker();
+			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.CancelButton = new System.Windows.Forms.Button();
 			this.OkButton = new System.Windows.Forms.Button();
 			this.photoPictureBox = new System.Windows.Forms.PictureBox();
-			this.panel1.SuspendLayout();
+			this.AddPhotoButton = new System.Windows.Forms.PictureBox();
+			this.bottomPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.AddPhotoButton)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// vkTextBox
@@ -73,13 +75,13 @@
 			this.dateOfBirthLabel.TabIndex = 18;
 			this.dateOfBirthLabel.Text = "Date of Birth:";
 			// 
-			// phoneTextBox4
+			// phoneTextBox
 			// 
-			this.phoneTextBox4.Location = new System.Drawing.Point(122, 128);
-			this.phoneTextBox4.Name = "phoneTextBox4";
-			this.phoneTextBox4.Size = new System.Drawing.Size(175, 20);
-			this.phoneTextBox4.TabIndex = 17;
-			this.phoneTextBox4.Text = "+7 (996) 938-67-94";
+			this.phoneTextBox.Location = new System.Drawing.Point(122, 128);
+			this.phoneTextBox.Name = "phoneTextBox";
+			this.phoneTextBox.Size = new System.Drawing.Size(175, 20);
+			this.phoneTextBox.TabIndex = 17;
+			this.phoneTextBox.Text = "+7 (996) 938-67-94";
 			// 
 			// phoneNumberLabel
 			// 
@@ -130,23 +132,23 @@
 			this.fullNameLabel.TabIndex = 12;
 			this.fullNameLabel.Text = "Full Name:";
 			// 
-			// dateTimePicker1
+			// DateOfBirthPicker
 			// 
-			this.dateTimePicker1.Location = new System.Drawing.Point(122, 177);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(175, 20);
-			this.dateTimePicker1.TabIndex = 22;
+			this.DateOfBirthPicker.Location = new System.Drawing.Point(122, 177);
+			this.DateOfBirthPicker.Name = "DateOfBirthPicker";
+			this.DateOfBirthPicker.Size = new System.Drawing.Size(175, 20);
+			this.DateOfBirthPicker.TabIndex = 22;
 			// 
-			// panel1
+			// bottomPanel
 			// 
-			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel1.Controls.Add(this.CancelButton);
-			this.panel1.Controls.Add(this.OkButton);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 311);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(584, 50);
-			this.panel1.TabIndex = 23;
+			this.bottomPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.bottomPanel.Controls.Add(this.CancelButton);
+			this.bottomPanel.Controls.Add(this.OkButton);
+			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.bottomPanel.Location = new System.Drawing.Point(0, 311);
+			this.bottomPanel.Name = "bottomPanel";
+			this.bottomPanel.Size = new System.Drawing.Size(584, 50);
+			this.bottomPanel.TabIndex = 23;
 			// 
 			// CancelButton
 			// 
@@ -164,7 +166,7 @@
 			this.OkButton.Name = "OkButton";
 			this.OkButton.Size = new System.Drawing.Size(75, 23);
 			this.OkButton.TabIndex = 0;
-			this.OkButton.Text = "Ok";
+			this.OkButton.Text = "OK";
 			this.OkButton.UseVisualStyleBackColor = true;
 			this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
 			// 
@@ -178,18 +180,31 @@
 			this.photoPictureBox.TabIndex = 11;
 			this.photoPictureBox.TabStop = false;
 			// 
+			// AddPhotoButton
+			// 
+			this.AddPhotoButton.Image = global::ContactsApp.View.Properties.Resources.add_photo_32x32_gray;
+			this.AddPhotoButton.Location = new System.Drawing.Point(48, 118);
+			this.AddPhotoButton.Name = "AddPhotoButton";
+			this.AddPhotoButton.Size = new System.Drawing.Size(32, 32);
+			this.AddPhotoButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.AddPhotoButton.TabIndex = 24;
+			this.AddPhotoButton.TabStop = false;
+			this.AddPhotoButton.MouseEnter += new System.EventHandler(this.AddPhotoButton_MouseEnter);
+			this.AddPhotoButton.MouseLeave += new System.EventHandler(this.AddPhotoButton_MouseLeave);
+			// 
 			// ContactForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(584, 361);
-			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.dateTimePicker1);
+			this.Controls.Add(this.AddPhotoButton);
+			this.Controls.Add(this.bottomPanel);
+			this.Controls.Add(this.DateOfBirthPicker);
 			this.Controls.Add(this.vkTextBox);
 			this.Controls.Add(this.vkLabel);
 			this.Controls.Add(this.dateOfBirthLabel);
-			this.Controls.Add(this.phoneTextBox4);
+			this.Controls.Add(this.phoneTextBox);
 			this.Controls.Add(this.phoneNumberLabel);
 			this.Controls.Add(this.emailTextBox);
 			this.Controls.Add(this.emailLabel);
@@ -199,8 +214,9 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "ContactForm";
 			this.ShowIcon = false;
-			this.panel1.ResumeLayout(false);
+			this.bottomPanel.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.AddPhotoButton)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -211,16 +227,17 @@
 		private System.Windows.Forms.TextBox vkTextBox;
 		private System.Windows.Forms.Label vkLabel;
 		private System.Windows.Forms.Label dateOfBirthLabel;
-		private System.Windows.Forms.TextBox phoneTextBox4;
+		private System.Windows.Forms.TextBox phoneTextBox;
 		private System.Windows.Forms.Label phoneNumberLabel;
 		private System.Windows.Forms.TextBox emailTextBox;
 		private System.Windows.Forms.Label emailLabel;
 		private System.Windows.Forms.TextBox fullNameTextBox;
 		private System.Windows.Forms.Label fullNameLabel;
 		private System.Windows.Forms.PictureBox photoPictureBox;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.DateTimePicker DateOfBirthPicker;
+		private System.Windows.Forms.Panel bottomPanel;
 		private System.Windows.Forms.Button CancelButton;
 		private System.Windows.Forms.Button OkButton;
+		private System.Windows.Forms.PictureBox AddPhotoButton;
 	}
 }

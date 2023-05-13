@@ -26,5 +26,15 @@ namespace ContactsApp.View
 		{
 			DialogResult=DialogResult.Cancel;
 		}
+
+		private void AddPhotoButton_MouseEnter(object sender, EventArgs e)
+		{
+			AddPhotoButton.Image = Properties.Resources.add_photo_32x32;
+		}
+
+		private void AddPhotoButton_MouseLeave(object sender, EventArgs e)
+		{
+			AddPhotoButton.Image = Properties.Resources.add_photo_32x32_gray;
+		}
 	}
 }
