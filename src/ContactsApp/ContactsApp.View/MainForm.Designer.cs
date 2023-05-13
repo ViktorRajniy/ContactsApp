@@ -40,8 +40,8 @@
 			this.contactsListBox = new System.Windows.Forms.ListBox();
 			this.infoPanel = new System.Windows.Forms.Panel();
 			this.birthdayPanel = new System.Windows.Forms.Panel();
-			this.birthdayPanalCloseButton = new System.Windows.Forms.Button();
-			this.birthdaySurnamesLable = new System.Windows.Forms.Label();
+			this.birthdayPanelCloseButton = new System.Windows.Forms.Button();
+			this.birthdaySurnamesLabel = new System.Windows.Forms.Label();
 			this.birthdayLabel = new System.Windows.Forms.Label();
 			this.birthdayPictureBox = new System.Windows.Forms.PictureBox();
 			this.vkTextBox = new System.Windows.Forms.TextBox();
@@ -212,8 +212,8 @@
 			this.birthdayPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.birthdayPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-			this.birthdayPanel.Controls.Add(this.birthdayPanalCloseButton);
-			this.birthdayPanel.Controls.Add(this.birthdaySurnamesLable);
+			this.birthdayPanel.Controls.Add(this.birthdayPanelCloseButton);
+			this.birthdayPanel.Controls.Add(this.birthdaySurnamesLabel);
 			this.birthdayPanel.Controls.Add(this.birthdayLabel);
 			this.birthdayPanel.Controls.Add(this.birthdayPictureBox);
 			this.birthdayPanel.Location = new System.Drawing.Point(3, 377);
@@ -221,30 +221,30 @@
 			this.birthdayPanel.Size = new System.Drawing.Size(622, 75);
 			this.birthdayPanel.TabIndex = 11;
 			// 
-			// birthdayPanalCloseButton
+			// birthdayPanelCloseButton
 			// 
-			this.birthdayPanalCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.birthdayPanalCloseButton.FlatAppearance.BorderSize = 0;
-			this.birthdayPanalCloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.birthdayPanalCloseButton.Image = global::ContactsApp.View.Properties.Resources.close_32x32;
-			this.birthdayPanalCloseButton.Location = new System.Drawing.Point(587, 3);
-			this.birthdayPanalCloseButton.Name = "birthdayPanalCloseButton";
-			this.birthdayPanalCloseButton.Size = new System.Drawing.Size(32, 32);
-			this.birthdayPanalCloseButton.TabIndex = 3;
-			this.birthdayPanalCloseButton.UseVisualStyleBackColor = true;
-			this.birthdayPanalCloseButton.Click += new System.EventHandler(this.birthdayPanalCloseButton_Click);
+			this.birthdayPanelCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.birthdayPanelCloseButton.FlatAppearance.BorderSize = 0;
+			this.birthdayPanelCloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.birthdayPanelCloseButton.Image = global::ContactsApp.View.Properties.Resources.close_32x32;
+			this.birthdayPanelCloseButton.Location = new System.Drawing.Point(587, 3);
+			this.birthdayPanelCloseButton.Name = "birthdayPanelCloseButton";
+			this.birthdayPanelCloseButton.Size = new System.Drawing.Size(32, 32);
+			this.birthdayPanelCloseButton.TabIndex = 3;
+			this.birthdayPanelCloseButton.UseVisualStyleBackColor = true;
+			this.birthdayPanelCloseButton.Click += new System.EventHandler(this.birthdayPanalCloseButton_Click);
 			// 
-			// birthdaySurnamesLable
+			// birthdaySurnamesLabel
 			// 
-			this.birthdaySurnamesLable.AutoSize = true;
-			this.birthdaySurnamesLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.birthdaySurnamesLable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
-			this.birthdaySurnamesLable.Location = new System.Drawing.Point(78, 43);
-			this.birthdaySurnamesLable.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
-			this.birthdaySurnamesLable.Name = "birthdaySurnamesLable";
-			this.birthdaySurnamesLable.Size = new System.Drawing.Size(316, 13);
-			this.birthdaySurnamesLable.TabIndex = 2;
-			this.birthdaySurnamesLable.Text = "Оксингерт, Оксенгерт, Оксингирт, Оксенгирт и др.";
+			this.birthdaySurnamesLabel.AutoSize = true;
+			this.birthdaySurnamesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.birthdaySurnamesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
+			this.birthdaySurnamesLabel.Location = new System.Drawing.Point(78, 43);
+			this.birthdaySurnamesLabel.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
+			this.birthdaySurnamesLabel.Name = "birthdaySurnamesLabel";
+			this.birthdaySurnamesLabel.Size = new System.Drawing.Size(316, 13);
+			this.birthdaySurnamesLabel.TabIndex = 2;
+			this.birthdaySurnamesLabel.Text = "Оксингерт, Оксенгерт, Оксингирт, Оксенгирт и др.";
 			// 
 			// birthdayLabel
 			// 
@@ -423,8 +423,8 @@
 		private System.Windows.Forms.TextBox emailTextBox;
 		private System.Windows.Forms.Panel birthdayPanel;
 		private System.Windows.Forms.PictureBox birthdayPictureBox;
-		private System.Windows.Forms.Button birthdayPanalCloseButton;
-		private System.Windows.Forms.Label birthdaySurnamesLable;
+		private System.Windows.Forms.Button birthdayPanelCloseButton;
+		private System.Windows.Forms.Label birthdaySurnamesLabel;
 		private System.Windows.Forms.Label birthdayLabel;
 		private System.Windows.Forms.PictureBox RemoveContactButton;
 		private System.Windows.Forms.PictureBox EditContactButton;
