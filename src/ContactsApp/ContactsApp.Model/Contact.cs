@@ -7,13 +7,11 @@ using System.Text.RegularExpressions;
 
 namespace ContactsApp.Model
 {
+	/// <summary>
+	/// Класс содержащий информацию о контакте.
+	/// </summary>
 	public class Contact
 	{
-		/// <summary>
-		/// Допустимые символы в номере телефона.
-		/// </summary>
-		private const string ValidPhoneSimbols = "1234567890 +()-";
-
 		/// <summary>
 		/// Максимальное количество символов в имени.
 		/// </summary>
@@ -69,12 +67,12 @@ namespace ContactsApp.Model
 						_fullName = value;
 					else
 						throw new ArgumentException(
-							"Имя не может быть пустым.");
+							"The name field cannot be empty.");
 
 				}
 				else
 					throw new ArgumentException(
-						"Имя слишком длинное.");
+						"The name is too long.");
 			}
 		}
 
@@ -92,7 +90,8 @@ namespace ContactsApp.Model
 					_email = value;
 				}
 				else
-					throw new ArgumentException("Адрес почты слишком длинный.");
+					throw new ArgumentException(
+						"The email address is too long.");
 			}
 		}
 
@@ -105,6 +104,8 @@ namespace ContactsApp.Model
 
 			set
 			{
+				//Regex содержит ограничения на правильность ввода номера телефона.
+				//Правильный вариант: +0(000)-000-00-00
 				string pattern = @"^\+\d{1}\(\d{3}\)\-\d{3}\-\d{2}\-\d{2}";
 				if (Regex.IsMatch(value, pattern))
 				{
@@ -112,7 +113,9 @@ namespace ContactsApp.Model
 				}
 				else
 				{
-					throw new ArgumentException("Номер телефона введён неверно.");
+					throw new ArgumentException(
+						"The phone number is entered incorrectly. " +
+						"Correct input option: +X(XXX)-XXX-XX-XX.");
 				}
 			}
 		}
@@ -133,7 +136,7 @@ namespace ContactsApp.Model
 				}
 				else
 					throw new ArgumentException(
-						"Ссылка вк слишком длинная.");
+						"The link to the VK profile is too long.");
 			}
 		}
 
@@ -146,15 +149,15 @@ namespace ContactsApp.Model
 
 			set
 			{
-				if (DateTime.Compare(value, DateTime.Today) > 0)
+				if (value > DateTime.Today)
 				{
 					throw new ArgumentException(
-						"День рождения не может позднее сегодня.");
+						"The date of birth cannot be later than today.");
 				}
 				if (value.Date.Year == 1900)
 				{
 					throw new ArgumentException(
-						"Дата рождения не может быть раньше 1900 года.");
+						"The date of birth cannot be earlier than 1900.");
 				}
 				_dateOfBirth = value;
 

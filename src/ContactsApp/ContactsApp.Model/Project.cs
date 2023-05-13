@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ContactsApp.Model
 {
+	/// <summary>
+	/// Главный класс проекта. Содержит список контактов и методы сортировки.
+	/// </summary>
 	public class Project
 	{
 		/// <summary>
@@ -11,15 +14,7 @@ namespace ContactsApp.Model
 		/// </summary>
 		private List<Contact> _contacts;
 
-		public List<Contact> Contacts
-		{
-			get => _contacts;
-
-			set
-			{
-				_contacts.AddRange(value);
-			}
-		}
+		public List<Contact> Contacts { get; set; }
 
 		/// <summary>
 		/// Сортирует список контактов по полному имени.
@@ -30,8 +25,8 @@ namespace ContactsApp.Model
 		{
 			List<Contact> result = new List<Contact>();
 			result = (from contact in contacts
-					 orderby contact.FullName
-					 select contact) as List<Contact>;
+					  orderby contact.FullName
+					  select contact) as List<Contact>;
 			return result;
 		}
 
