@@ -167,7 +167,12 @@ namespace ContactsApp.Model
 		/// <summary>
 		/// Конструктор класса <see cref="Contact"/>.
 		/// </summary>
-		public Contact() : this("Nothing", "someadress@mail.ru", "+0(000)-000-00-00", DateTime.Today, "vkid")
+		public Contact() : this(
+			"Nothing", 
+			"someadress@mail.ru", 
+			"+0(000)-000-00-00", 
+			DateTime.Today, 
+			"vkid")
 		{
 		}
 
