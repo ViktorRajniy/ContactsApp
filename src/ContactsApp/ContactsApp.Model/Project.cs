@@ -14,7 +14,7 @@ namespace ContactsApp.Model
 		/// </summary>
 		private List<Contact> _contacts;
 
-		public List<Contact> Contacts { get; set; }
+		public List<Contact> Contacts { get; set; } = new List<Contact>();
 
 		/// <summary>
 		/// Сортирует список контактов по полному имени.
