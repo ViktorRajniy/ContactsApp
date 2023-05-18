@@ -1,4 +1,5 @@
 ﻿using System;
+using ContactsApp.Model;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,25 @@ namespace ContactsApp.View
 {
 	public partial class ContactForm : Form
 	{
+		Contact _contact = new Contact(
+			"Enter your name",
+			"Enter your e-mail",
+			"+7(000)-000-00-00", 
+			DateTime.Today,
+			"http://vk.com");
 		public ContactForm()
 		{
 			InitializeComponent();
+			UpdateForm();
+		}
+
+		private void UpdateForm()
+		{
+			fullNameTextBox.Text = _contact.FullName;
+			emailTextBox.Text = _contact.Email;
+			phoneTextBox.Text = _contact.Phone;
+			vkTextBox.Text = _contact.VKID;
+			DateOfBirthPicker.Value = _contact.DateOfBirth;
 		}
 
 		private void OkButton_Click(object sender, EventArgs e)
