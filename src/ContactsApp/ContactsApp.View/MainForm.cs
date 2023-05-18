@@ -90,11 +90,12 @@ namespace ContactsApp.View
 		/// <param name="index"></param>
 		private void UpdateSelectedContact(int index)
 		{
-			fullNameTextBox.Text = _project.Contacts[index].FullName;
-			emailTextBox.Text = _project.Contacts[index].Email;
-			phoneTextBox.Text = _project.Contacts[index].Phone;
-			vkTextBox.Text = _project.Contacts[index].VKID;
-			dateBirthTextBox.Text = _project.Contacts[index].DateOfBirth.ToString();
+			Contact contact = _project.Contacts[index];
+			fullNameTextBox.Text = contact.FullName;
+			emailTextBox.Text = contact.Email;
+			phoneTextBox.Text = contact.Phone;
+			vkTextBox.Text = contact.VKID;
+			dateBirthTextBox.Text = contact.DateOfBirth.ToString();
 		}
 
 		/// <summary>
