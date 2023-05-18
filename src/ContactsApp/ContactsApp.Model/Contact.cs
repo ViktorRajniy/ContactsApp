@@ -106,7 +106,7 @@ namespace ContactsApp.Model
 			{
 				//Regex содержит ограничения на правильность ввода номера телефона.
 				//Правильный вариант: +0(000)-000-00-00
-				string pattern = @"^\+\d{1}\(\d{3}\)\-\d{3}\-\d{2}\-\d{2}";
+				string pattern = @"^\+\d{1}\(\d{3}\)\-\d{3}\-\d{2}\-\d{2}$";
 				if (Regex.IsMatch(value, pattern))
 				{
 					_phone = value;
