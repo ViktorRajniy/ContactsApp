@@ -54,6 +54,7 @@
 			this.vkTextBox.Name = "vkTextBox";
 			this.vkTextBox.Size = new System.Drawing.Size(175, 20);
 			this.vkTextBox.TabIndex = 21;
+			this.vkTextBox.TextChanged += new System.EventHandler(this.vkTextBox_TextChanged);
 			// 
 			// vkLabel
 			// 
@@ -82,6 +83,7 @@
 			this.phoneTextBox.Size = new System.Drawing.Size(175, 20);
 			this.phoneTextBox.TabIndex = 17;
 			this.phoneTextBox.Text = "+7 (996) 938-67-94";
+			this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
 			// 
 			// phoneNumberLabel
 			// 
@@ -102,6 +104,7 @@
 			this.emailTextBox.Size = new System.Drawing.Size(450, 20);
 			this.emailTextBox.TabIndex = 15;
 			this.emailTextBox.Text = "rajniyviktor@yandex.ru";
+			this.emailTextBox.TextChanged += new System.EventHandler(this.emailTextBox_TextChanged);
 			// 
 			// emailLabel
 			// 
@@ -139,6 +142,7 @@
 			this.DateOfBirthPicker.Name = "DateOfBirthPicker";
 			this.DateOfBirthPicker.Size = new System.Drawing.Size(175, 20);
 			this.DateOfBirthPicker.TabIndex = 22;
+			this.DateOfBirthPicker.ValueChanged += new System.EventHandler(this.DateOfBirthPicker_ValueChanged);
 			// 
 			// bottomPanel
 			// 
