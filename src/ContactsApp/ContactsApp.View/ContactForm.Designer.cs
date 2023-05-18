@@ -122,6 +122,7 @@
 			this.fullNameTextBox.Size = new System.Drawing.Size(450, 20);
 			this.fullNameTextBox.TabIndex = 13;
 			this.fullNameTextBox.Text = "Оксингерт Виктор Константинович";
+			this.fullNameTextBox.TextChanged += new System.EventHandler(this.fullNameTextBox_TextChanged);
 			// 
 			// fullNameLabel
 			// 

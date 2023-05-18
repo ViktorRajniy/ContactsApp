@@ -13,6 +13,12 @@ namespace ContactsApp.View
 {
 	public partial class ContactForm : Form
 	{
+		private readonly Color ErrorColor = Color.LightPink;
+
+		private readonly Color DefaultColor = Color.White;
+
+		private string _fullNameError;
+
 		Contact _contact = new Contact(
 			"Enter your name",
 			"Enter your e-mail",
@@ -52,6 +58,32 @@ namespace ContactsApp.View
 		private void AddPhotoButton_MouseLeave(object sender, EventArgs e)
 		{
 			AddPhotoButton.Image = Properties.Resources.add_photo_32x32_gray;
+		}
+
+		private void fullNameTextBox_TextChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				if (fullNameTextBox.Text.Length < 100)
+				{
+					if (fullNameTextBox.Text != "")
+						_contact.FullName = fullNameTextBox.Text;
+					else
+						throw new ArgumentException(
+							"The name field cannot be empty.");
+
+				}
+				else
+					throw new ArgumentException(
+						"The name is too long.");
+				fullNameTextBox.BackColor = DefaultColor;
+				_fullNameError = "";
+			}
+			catch (ArgumentException exception)
+			{
+				fullNameTextBox.BackColor = ErrorColor;
+				_fullNameError = exception.Message;
+			}
 		}
 	}
 }
