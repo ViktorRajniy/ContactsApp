@@ -212,6 +212,7 @@
 			this.Controls.Add(this.fullNameLabel);
 			this.Controls.Add(this.photoPictureBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
 			this.Name = "ContactForm";
 			this.ShowIcon = false;
 			this.bottomPanel.ResumeLayout(false);
