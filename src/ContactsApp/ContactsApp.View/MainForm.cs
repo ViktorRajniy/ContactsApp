@@ -50,23 +50,43 @@ namespace ContactsApp.View
 				contactsListBox.SelectedIndex = _project.Contacts.Count - 1;
 			}
 		}
+		/// <summary>
+		/// Редактирует выбранный контакт.
+		/// </summary>
+		/// <param name="selectedIndex"></param>
+		private void EditContact(int selectedIndex)
+		{
+			Contact selectedContact = _project.Contacts[selectedIndex].CloneContact();
+
+			ContactForm contactForm = new ContactForm();
+			contactForm.Contact = selectedContact;
+			contactForm.ShowDialog();
+			if (contactForm.DialogResult == DialogResult.OK)
+			{
+				Contact updatedContact = contactForm.Contact;
+				_project.Contacts[selectedIndex] = updatedContact;
+				UpdateListBox();
+				contactsListBox.SelectedIndex = selectedIndex;
+			}
+		}
 
 		/// <summary>
 		/// Удаляет контакт.
 		/// </summary>
 		/// <param name="index"></param>
-		private void RemoveContact(int index)
+		private void RemoveContact(int selectedIndex)
 		{
-			if (index == -1)
+			if (selectedIndex == -1)
 			{
 				return;
 			}
 			DialogResult result = MessageBox.Show("Do you really want to remove " +
-				_project.Contacts[index].FullName +
+				_project.Contacts[selectedIndex].FullName +
 				"?", "", MessageBoxButtons.OKCancel);
 			if (result == DialogResult.OK)
 			{
-				_project.Contacts.RemoveAt(index);
+				_project.Contacts.RemoveAt(selectedIndex);
+				ClearSelectedContact();
 			}
 			UpdateListBox();
 		}
@@ -214,12 +234,11 @@ namespace ContactsApp.View
 		/// <param name="e"></param>
 		private void EditContactButton_Click(object sender, EventArgs e)
 		{
-			var contactForm = new ContactForm();
-			if (contactForm.ShowDialog() == DialogResult.OK)
+			int selectedIndex = contactsListBox.SelectedIndex;
+			if (selectedIndex != -1)
 			{
-				AddContact();
+				EditContact(selectedIndex);
 			}
-			UpdateListBox();
 		}
 
 		/// <summary>

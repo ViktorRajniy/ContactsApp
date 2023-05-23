@@ -72,7 +72,7 @@ namespace ContactsApp.Model
 				}
 				else
 					throw new ArgumentException(
-						"The name is too long.");
+						"The name cannot be longer than 100 characters.");
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace ContactsApp.Model
 				}
 				else
 					throw new ArgumentException(
-						"The email address is too long.");
+						"The email address cannot be longer than 100 characters.");
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace ContactsApp.Model
 				}
 				else
 					throw new ArgumentException(
-						"The link to the VK profile is too long.");
+						"The link to the VK profile cannot be longer than 50 characters.");
 			}
 		}
 
@@ -162,6 +162,21 @@ namespace ContactsApp.Model
 				_dateOfBirth = value;
 
 			}
+		}
+
+		/// <summary>
+		/// Метод, создающий клон контакта.
+		/// </summary>
+		/// <returns></returns>
+		public Contact CloneContact()
+		{
+			Contact clone = new Contact(
+				this.FullName,
+				this.Email,
+				this.Phone,
+				this.DateOfBirth,
+				this.VKID);
+			return clone;
 		}
 
 		/// <summary>
