@@ -1,12 +1,6 @@
 ﻿using System;
 using ContactsApp.Model;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactsApp.View
@@ -48,6 +42,9 @@ namespace ContactsApp.View
 		/// </summary>
 		private string _dateOfBirthError;
 
+
+
+
 		/// <summary>
 		/// Метод, проверяющий наличие ошибок при вводе данных. 
 		/// Возвращает true, если ошибок нет.
@@ -56,16 +53,16 @@ namespace ContactsApp.View
 		private bool CheckFormOnErrors()
 		{
 			if (
-				_fullNameError != "" |
-				_emailError != "" |
-				_phoneError != "" |
-				_vkError != "" |
-				_dateOfBirthError != "")
+				_fullNameError != null ||
+				_emailError != null ||
+				_phoneError != null ||
+				_vkError != null ||
+				_dateOfBirthError != null)
 			{
 				MessageBox.Show(_fullNameError +
-					_emailError + 
-					_phoneError + 
-					_vkError + 
+					_emailError +
+					_phoneError +
+					_vkError +
 					_dateOfBirthError);
 				return false;
 			}
@@ -77,12 +74,29 @@ namespace ContactsApp.View
 		/// <summary>
 		/// Основная переменная формы. Содержит информацию о контакте.
 		/// </summary>
-		Contact _contact = new Contact(
+		private Contact _contact = new Contact
+		(
 			"Enter your name",
 			"Enter your e-mail",
-			"+7(000)-000-00-00",
+			"+0(000)-000-00-00",
 			DateTime.Today,
 			"http://vk.com");
+
+		public Contact Contact
+		{
+			get
+			{
+				return _contact;
+			}
+			set
+			{
+				_contact = value;
+				if (_contact != null)
+				{
+					UpdateForm();
+				}
+			}
+		}
 
 		/// <summary>
 		/// Конструктор формы.
@@ -126,7 +140,7 @@ namespace ContactsApp.View
 		/// <param name="e"></param>
 		private void OkButton_Click(object sender, EventArgs e)
 		{
-			if(CheckFormOnErrors())
+			if (CheckFormOnErrors())
 			{
 				UpdateContact();
 				DialogResult = DialogResult.OK;
@@ -174,12 +188,12 @@ namespace ContactsApp.View
 			{
 				_contact.FullName = fullNameTextBox.Text;
 				fullNameTextBox.BackColor = DefaultColor;
-				_fullNameError = "";
+				_fullNameError = null;
 			}
 			catch (ArgumentException exception)
 			{
 				fullNameTextBox.BackColor = ErrorColor;
-				_fullNameError = exception.Message+"\n";
+				_fullNameError = exception.Message + "\n";
 			}
 		}
 
@@ -194,7 +208,7 @@ namespace ContactsApp.View
 			{
 				_contact.Email = emailTextBox.Text;
 				emailTextBox.BackColor = DefaultColor;
-				_emailError = "";
+				_emailError = null;
 
 			}
 			catch (ArgumentException exception)
@@ -215,7 +229,7 @@ namespace ContactsApp.View
 			{
 				_contact.Phone = phoneTextBox.Text;
 				phoneTextBox.BackColor = DefaultColor;
-				_phoneError = "";
+				_phoneError = null;
 			}
 			catch (ArgumentException exception)
 			{
@@ -235,7 +249,7 @@ namespace ContactsApp.View
 			{
 				_contact.VKID = vkTextBox.Text;
 				vkTextBox.BackColor = DefaultColor;
-				_vkError = "";
+				_vkError = null;
 			}
 			catch (ArgumentException exception)
 			{
@@ -255,7 +269,7 @@ namespace ContactsApp.View
 			{
 				_contact.DateOfBirth = DateOfBirthPicker.Value;
 				DateOfBirthPicker.BackColor = DefaultColor;
-				_dateOfBirthError = "";
+				_dateOfBirthError = null;
 			}
 			catch (ArgumentException exception)
 			{

@@ -40,28 +40,15 @@ namespace ContactsApp.View
 		/// </summary>
 		private void AddContact()
 		{
-			List<string> _names = new List<string> {
-				"Элайджа Вуд",
-				"Иэн Маккелен",
-				"Вигго Мортенсен",
-				"Шон Бин",
-				"Орландо Блум",
-				"Джон Рин-Девис",
-				"Иэн Холм",
-				"Иванов",
-				"Петров",
-				"Сидоров",
-				"Лукодёргов",
-				"Янушев",
-				"Ватрушкин" };
-			Random random = new Random();
-			Contact contact = new Contact(
-				_names[random.Next(1, _names.Count)], 
-				"", 
-				"+0(000)-000-00-00",
-				DateTime.Today, 
-				"");
-			_project.Contacts.Add(contact);
+			ContactForm contactForm = new ContactForm();
+			contactForm.ShowDialog();
+			if (contactForm.DialogResult == DialogResult.OK)
+			{
+				Contact updatedContact = contactForm.Contact;
+				_project.Contacts.Add(updatedContact);
+				UpdateListBox();
+				contactsListBox.SelectedIndex = _project.Contacts.Count - 1;
+			}
 		}
 
 		/// <summary>
@@ -183,12 +170,7 @@ namespace ContactsApp.View
 		/// <param name="e"></param>
 		private void AddContactButton_Click(object sender, EventArgs e)
 		{
-			var contactForm = new ContactForm();
-			if (contactForm.ShowDialog() == DialogResult.OK)
-			{
-				AddContact();
-			}
-			UpdateListBox();
+			AddContact();
 		}
 
 		/// <summary>

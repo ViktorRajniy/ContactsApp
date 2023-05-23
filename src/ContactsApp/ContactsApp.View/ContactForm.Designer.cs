@@ -82,7 +82,6 @@
 			this.phoneTextBox.Name = "phoneTextBox";
 			this.phoneTextBox.Size = new System.Drawing.Size(175, 20);
 			this.phoneTextBox.TabIndex = 17;
-			this.phoneTextBox.Text = "+7 (996) 938-67-94";
 			this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
 			// 
 			// phoneNumberLabel
@@ -103,7 +102,6 @@
 			this.emailTextBox.Name = "emailTextBox";
 			this.emailTextBox.Size = new System.Drawing.Size(450, 20);
 			this.emailTextBox.TabIndex = 15;
-			this.emailTextBox.Text = "rajniyviktor@yandex.ru";
 			this.emailTextBox.TextChanged += new System.EventHandler(this.emailTextBox_TextChanged);
 			// 
 			// emailLabel
@@ -124,7 +122,6 @@
 			this.fullNameTextBox.Name = "fullNameTextBox";
 			this.fullNameTextBox.Size = new System.Drawing.Size(450, 20);
 			this.fullNameTextBox.TabIndex = 13;
-			this.fullNameTextBox.Text = "Оксингерт Виктор Константинович";
 			this.fullNameTextBox.TextChanged += new System.EventHandler(this.fullNameTextBox_TextChanged);
 			// 
 			// fullNameLabel
