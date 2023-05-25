@@ -23,10 +23,7 @@ namespace ContactsApp.Model
 		/// <returns></returns>
 		public List<Contact> SortContactsByFullName(List<Contact> contacts)
 		{
-			List<Contact> result = new List<Contact>();
-			result = (from contact in contacts
-					  orderby contact.FullName
-					  select contact) as List<Contact>;
+			List<Contact> result = contacts.OrderBy(contact => contact.FullName).ToList();
 			return result;
 		}
 

@@ -16,6 +16,11 @@ namespace ContactsApp.View
 		private Project _project = new Project();
 
 		/// <summary>
+		/// Объект, отвечающий за текущее расположение контактов в списке.
+		/// </summary>
+		private Project _currentProject = new Project();
+
+		/// <summary>
 		/// Главная форма программы.
 		/// </summary>
 		public MainForm()
@@ -24,14 +29,30 @@ namespace ContactsApp.View
 		}
 
 		/// <summary>
-		/// Обновляет список контактов.
+		/// Обновляет список текущих контактов в списке.
 		/// </summary>
-		private void UpdateListBox()
+		private void UpdateCurrentProject()
 		{
 			contactsListBox.Items.Clear();
-			foreach (Contact contact in _project.Contacts)
+			_currentProject.Contacts = _project.SortContactsByFullName(_project.Contacts);
+		}
+
+		/// <summary>
+		/// Обновляет список контактов.
+		/// </summary>
+		/// <param name="selectedContact">Контакт, который нужно выделить в списке.</param>
+		private void UpdateListBox(Contact selectedContact = null)
+		{
+			UpdateCurrentProject();
+			foreach (Contact contact in _currentProject.Contacts)
 			{
 				contactsListBox.Items.Add(contact.FullName);
+			}
+			if (selectedContact != null)
+			{
+				int selectedIndex = _currentProject.Contacts.IndexOf(selectedContact);
+				contactsListBox.SelectedIndex = selectedIndex;
+				UpdateSelectedContact(selectedIndex);
 			}
 		}
 
@@ -46,27 +67,33 @@ namespace ContactsApp.View
 			{
 				Contact updatedContact = contactForm.Contact;
 				_project.Contacts.Add(updatedContact);
-				UpdateListBox();
-				contactsListBox.SelectedIndex = _project.Contacts.Count - 1;
+				UpdateListBox(updatedContact);
 			}
 		}
+
 		/// <summary>
 		/// Редактирует выбранный контакт.
 		/// </summary>
 		/// <param name="selectedIndex"></param>
 		private void EditContact(int selectedIndex)
 		{
+			//Клонирование контакта
 			Contact selectedContact = _project.Contacts[selectedIndex].CloneContact();
 
+			//Вызов формы
 			ContactForm contactForm = new ContactForm();
 			contactForm.Contact = selectedContact;
 			contactForm.ShowDialog();
+
+			//Если пользователь нажал ОК
 			if (contactForm.DialogResult == DialogResult.OK)
 			{
+				//Взятие данных из формы
 				Contact updatedContact = contactForm.Contact;
+				//Замена обновлённого элемента в project
 				_project.Contacts[selectedIndex] = updatedContact;
-				UpdateListBox();
-				contactsListBox.SelectedIndex = selectedIndex;
+				//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
+				UpdateListBox(updatedContact);
 			}
 		}
 
@@ -88,6 +115,7 @@ namespace ContactsApp.View
 				_project.Contacts.RemoveAt(selectedIndex);
 				ClearSelectedContact();
 			}
+			UpdateCurrentProject();
 			UpdateListBox();
 		}
 
@@ -97,7 +125,7 @@ namespace ContactsApp.View
 		/// <param name="index"></param>
 		private void UpdateSelectedContact(int index)
 		{
-			Contact contact = _project.Contacts[index];
+			Contact contact = _currentProject.Contacts[index];
 			fullNameTextBox.Text = contact.FullName;
 			emailTextBox.Text = contact.Email;
 			phoneTextBox.Text = contact.Phone;
@@ -315,6 +343,11 @@ namespace ContactsApp.View
 			DialogResult result = MessageBox.Show("Do you really want to leave?", "", MessageBoxButtons.OKCancel);
 			if (result == DialogResult.Cancel)
 				e.Cancel = true;
+		}
+
+		private void findTextBox_TextChanged(object sender, EventArgs e)
+		{
+			UpdateListBox();
 		}
 	}
 }
