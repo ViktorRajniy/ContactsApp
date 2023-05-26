@@ -28,32 +28,61 @@ namespace ContactsApp.View
 			InitializeComponent();
 		}
 
-		/// <summary>
-		/// Обновляет список текущих контактов в списке.
-		/// </summary>
-		private void UpdateCurrentProject()
-		{
-			contactsListBox.Items.Clear();
-			_currentProject.Contacts = _project.SortContactsByFullName(_project.Contacts);
-		}
-
+		//todo Переделать апдейт см. ниже
 		/// <summary>
 		/// Обновляет список контактов.
 		/// </summary>
 		/// <param name="selectedContact">Контакт, который нужно выделить в списке.</param>
 		private void UpdateListBox(Contact selectedContact = null)
 		{
-			UpdateCurrentProject();
+			contactsListBox.Items.Clear();
+			_currentProject = _project;
+
 			foreach (Contact contact in _currentProject.Contacts)
 			{
 				contactsListBox.Items.Add(contact.FullName);
 			}
-			if (selectedContact != null)
+
+			//---------Зона экспериментов----------------------------------------------------------------------------
+			//Показывает _project
+
+			//Разделитель. Сверху _currentProject Снизу _project
+			Contact razd = new Contact("--------", "", "+0(000)-000-00-00", DateTime.Today, "");
+			contactsListBox.Items.Add(razd.FullName);
+
+			//Вывод _project
+			foreach (Contact contact in _project.Contacts)
 			{
-				int selectedIndex = _currentProject.Contacts.IndexOf(selectedContact);
-				contactsListBox.SelectedIndex = selectedIndex;
-				UpdateSelectedContact(selectedIndex);
+				contactsListBox.Items.Add(contact.FullName);
 			}
+			//---------Зона экспериментов-----------------------------------------------------------------------------
+
+			//Поиск по подстроке
+			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
+
+			////Очистка списка контактов на форме
+			//contactsListBox.Items.Clear();
+
+			////Переопределение текущего списка для дальнейшей обработки
+			//_currentProject = _project;
+
+			////Поиск контактов по подстроке
+			//_currentProject.Contacts = _currentProject.FindContactBySubString(_currentProject.Contacts, findTextBox.Text);
+
+			////Сортировка контактов по имени
+			//_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
+
+			////Вывод контактов в список на форму
+			//foreach (Contact contact in _currentProject.Contacts)
+			//{
+			//	contactsListBox.Items.Add(contact.FullName);
+			//}
+			//if (selectedContact != null)
+			//{
+			//	int selectedIndex = _currentProject.Contacts.IndexOf(selectedContact);
+			//	contactsListBox.SelectedIndex = selectedIndex;
+			//	UpdateSelectedContact(selectedIndex);
+			//}
 		}
 
 		/// <summary>
@@ -61,40 +90,65 @@ namespace ContactsApp.View
 		/// </summary>
 		private void AddContact()
 		{
+			//Создание и вызов формы
 			ContactForm contactForm = new ContactForm();
 			contactForm.ShowDialog();
-			if (contactForm.DialogResult == DialogResult.OK)
+
+			//Если пользователь нажал ОК
+			if(contactForm.DialogResult == DialogResult.OK)
 			{
-				Contact updatedContact = contactForm.Contact;
-				_project.Contacts.Add(updatedContact);
-				UpdateListBox(updatedContact);
+				//Взятие данных из формы
+				Contact newContact = contactForm.Contact;
+
+				//Добавление контакта в общий список контактов
+				_project.Contacts.Add(newContact);
+				//Обновление списка контактов на форме
+				UpdateListBox();
 			}
+
+			////Создание и вызов формы
+			//ContactForm contactForm = new ContactForm();
+			//contactForm.ShowDialog();
+			////Если пользователь нажал ОК
+			//if (contactForm.DialogResult == DialogResult.OK)
+			//{
+			//	//Взятие данных из формы
+			//	Contact updatedContact = contactForm.Contact;
+			//	//Добавление контакта в общий список контактов
+			//	_project.Contacts.Add(updatedContact);
+			//	//Обновление списка контактов на форме
+			//	UpdateListBox(updatedContact);
+			//}
 		}
 
+		//todo Не выделяет нужный контакт при поиске
 		/// <summary>
 		/// Редактирует выбранный контакт.
 		/// </summary>
 		/// <param name="selectedIndex"></param>
 		private void EditContact(int selectedIndex)
 		{
-			//Клонирование контакта
-			Contact selectedContact = _project.Contacts[selectedIndex].CloneContact();
+			////Контакт, будет изменён
+			//Contact contactClone = _currentProject.Contacts[selectedIndex].CloneContact();
 
-			//Вызов формы
-			ContactForm contactForm = new ContactForm();
-			contactForm.Contact = selectedContact;
-			contactForm.ShowDialog();
+			////Вызов формы
+			//ContactForm contactForm = new ContactForm();
+			//contactForm.Contact = contactClone;
+			//contactForm.ShowDialog();
 
-			//Если пользователь нажал ОК
-			if (contactForm.DialogResult == DialogResult.OK)
-			{
-				//Взятие данных из формы
-				Contact updatedContact = contactForm.Contact;
-				//Замена обновлённого элемента в project
-				_project.Contacts[selectedIndex] = updatedContact;
-				//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
-				UpdateListBox(updatedContact);
-			}
+			////Если пользователь нажал ОК
+			//if (contactForm.DialogResult == DialogResult.OK)
+			//{
+			//	//Обновлённый контакт
+			//	Contact updatedContact = contactForm.Contact;
+
+			//	//Индекс изменяемого контакта в project
+			//	int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
+			//	//Замена обновлённого элемента в project
+			//	_project.Contacts[projectIndex] = updatedContact;
+			//	//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
+			//	UpdateListBox(updatedContact);
+			//}
 		}
 
 		/// <summary>
@@ -103,29 +157,30 @@ namespace ContactsApp.View
 		/// <param name="index"></param>
 		private void RemoveContact(int selectedIndex)
 		{
-			if (selectedIndex == -1)
-			{
-				return;
-			}
-			DialogResult result = MessageBox.Show("Do you really want to remove " +
-				_project.Contacts[selectedIndex].FullName +
-				"?", "", MessageBoxButtons.OKCancel);
-			if (result == DialogResult.OK)
-			{
-				_project.Contacts.RemoveAt(selectedIndex);
-				ClearSelectedContact();
-			}
-			UpdateCurrentProject();
-			UpdateListBox();
+			//if (selectedIndex == -1)
+			//{
+			//	return;
+			//}
+			//DialogResult result = MessageBox.Show("Do you really want to remove " +
+			//	_currentProject.Contacts[selectedIndex].FullName +
+			//	"?", "", MessageBoxButtons.OKCancel);
+			//if (result == DialogResult.OK)
+			//{
+			//	int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
+			//	_project.Contacts.RemoveAt(projectIndex);
+			//	ClearSelectedContact();
+			//}
+			//UpdateListBox();
 		}
 
+		//todo Переделать взятие контакта из продженк а не из карент проджект
 		/// <summary>
 		/// Событие, обновляющее данные на панели справа.
 		/// </summary>
 		/// <param name="index"></param>
 		private void UpdateSelectedContact(int index)
 		{
-			Contact contact = _currentProject.Contacts[index];
+			Contact contact = _project.Contacts[index];
 			fullNameTextBox.Text = contact.FullName;
 			emailTextBox.Text = contact.Email;
 			phoneTextBox.Text = contact.Phone;
