@@ -60,26 +60,11 @@ namespace ContactsApp.View
 			//{
 			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
 			//}
-
-			//Сортировка контактов по имени
 			_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
 			foreach (Contact contact in _currentProject.Contacts)
 			{
 				contactsListBox.Items.Add(contact.FullName);
 			}
-
-			//todo Удалить по ненадобности
-			//---------Зона экспериментов----------------------------------------------------------------------------
-			//Показывает _project
-			//Разделитель. Сверху _currentProject Снизу _project
-			Contact razd = new Contact("--------", "", "+0(000)-000-00-00", DateTime.Today, "");
-			contactsListBox.Items.Add(razd.FullName);
-			//Вывод _project
-			foreach (Contact contact in _project.Contacts)
-			{
-				contactsListBox.Items.Add(contact.FullName);
-			}
-			//---------Зона экспериментов-----------------------------------------------------------------------------
 
 			if (selectedContact != null)
 			{
@@ -120,23 +105,19 @@ namespace ContactsApp.View
 		{
 			//Контакт, который будет изменён
 			Contact contactClone = _currentProject.Contacts[selectedIndex].CloneContact();
-
 			//Вызов формы
 			ContactForm contactForm = new ContactForm();
 			contactForm.Contact = contactClone;
 			contactForm.ShowDialog();
-
 			//Если пользователь нажал ОК
 			if (contactForm.DialogResult == DialogResult.OK)
 			{
 				//Обновлённый контакт
 				Contact updatedContact = contactForm.Contact;
-
 				//Индекс изменяемого контакта в project
 				int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
 				//Замена обновлённого элемента в project
 				_project.Contacts[projectIndex] = updatedContact;
-
 				//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
 				UpdateListBox(updatedContact);
 			}
@@ -396,6 +377,11 @@ namespace ContactsApp.View
 				e.Cancel = true;
 		}
 
+		/// <summary>
+		/// Событие, появляющееся при изменении текста в строке поиска.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void findTextBox_TextChanged(object sender, EventArgs e)
 		{
 			UpdateListBox();
