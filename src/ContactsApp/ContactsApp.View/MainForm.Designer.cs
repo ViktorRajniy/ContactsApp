@@ -243,9 +243,8 @@
 			this.birthdaySurnamesLabel.Location = new System.Drawing.Point(78, 43);
 			this.birthdaySurnamesLabel.Margin = new System.Windows.Forms.Padding(3, 15, 3, 0);
 			this.birthdaySurnamesLabel.Name = "birthdaySurnamesLabel";
-			this.birthdaySurnamesLabel.Size = new System.Drawing.Size(316, 13);
+			this.birthdaySurnamesLabel.Size = new System.Drawing.Size(0, 13);
 			this.birthdaySurnamesLabel.TabIndex = 2;
-			this.birthdaySurnamesLabel.Text = "Оксингерт, Оксенгерт, Оксингирт, Оксенгирт и др.";
 			// 
 			// birthdayLabel
 			// 

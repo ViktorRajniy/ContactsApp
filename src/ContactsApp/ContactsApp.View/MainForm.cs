@@ -28,28 +28,52 @@ namespace ContactsApp.View
 			InitializeComponent();
 		}
 
-		//todo Переделать апдейт см. ниже
+		/// <summary>
+		/// Вносит все контакты из _project в _currentProject.
+		/// </summary>
+		public void UpdateCurrentProject()
+		{
+			contactsListBox.Items.Clear();
+			_currentProject.Contacts.Clear();
+			foreach (Contact contact in _project.Contacts)
+			{
+				_currentProject.Contacts.Add(contact.CloneContact());
+			}
+		}
+
 		/// <summary>
 		/// Обновляет список контактов.
 		/// </summary>
 		/// <param name="selectedContact">Контакт, который нужно выделить в списке.</param>
 		private void UpdateListBox(Contact selectedContact = null)
 		{
-			contactsListBox.Items.Clear();
-			_currentProject = _project;
+			UpdateCurrentProject();
 
+			// Поиск по подстроке, если строка поиска не пустая
+			//
+			// ? Я хотел завернуть поиск в if, чтобы лишний раз функция не отрабатывала, НО		?
+			// ? если строчку 61 удалить/закоментировать/завернуть в if, который не выполнится, ?
+			// ? то при клике на элемент в списке элементов на форме программа умирает			?
+			// ? Он не может найти индекс в _currentProject в 87 строке							?
+			//
+			//if (findTextBox.Text != "")
+			//{
+			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
+			//}
+
+			//Сортировка контактов по имени
+			_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
 			foreach (Contact contact in _currentProject.Contacts)
 			{
 				contactsListBox.Items.Add(contact.FullName);
 			}
 
+			//todo Удалить по ненадобности
 			//---------Зона экспериментов----------------------------------------------------------------------------
 			//Показывает _project
-
 			//Разделитель. Сверху _currentProject Снизу _project
 			Contact razd = new Contact("--------", "", "+0(000)-000-00-00", DateTime.Today, "");
 			contactsListBox.Items.Add(razd.FullName);
-
 			//Вывод _project
 			foreach (Contact contact in _project.Contacts)
 			{
@@ -57,32 +81,13 @@ namespace ContactsApp.View
 			}
 			//---------Зона экспериментов-----------------------------------------------------------------------------
 
-			//Поиск по подстроке
-			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
-
-			////Очистка списка контактов на форме
-			//contactsListBox.Items.Clear();
-
-			////Переопределение текущего списка для дальнейшей обработки
-			//_currentProject = _project;
-
-			////Поиск контактов по подстроке
-			//_currentProject.Contacts = _currentProject.FindContactBySubString(_currentProject.Contacts, findTextBox.Text);
-
-			////Сортировка контактов по имени
-			//_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
-
-			////Вывод контактов в список на форму
-			//foreach (Contact contact in _currentProject.Contacts)
-			//{
-			//	contactsListBox.Items.Add(contact.FullName);
-			//}
-			//if (selectedContact != null)
-			//{
-			//	int selectedIndex = _currentProject.Contacts.IndexOf(selectedContact);
-			//	contactsListBox.SelectedIndex = selectedIndex;
-			//	UpdateSelectedContact(selectedIndex);
-			//}
+			if (selectedContact != null)
+			{
+				int projectIndex = _project.Contacts.IndexOf(selectedContact);
+				int selectedIndex = _currentProject.Contacts.IndexOf(selectedContact);
+				contactsListBox.SelectedIndex = selectedIndex;
+				UpdateSelectedContact(projectIndex);
+			}
 		}
 
 		/// <summary>
@@ -95,7 +100,7 @@ namespace ContactsApp.View
 			contactForm.ShowDialog();
 
 			//Если пользователь нажал ОК
-			if(contactForm.DialogResult == DialogResult.OK)
+			if (contactForm.DialogResult == DialogResult.OK)
 			{
 				//Взятие данных из формы
 				Contact newContact = contactForm.Contact;
@@ -103,52 +108,38 @@ namespace ContactsApp.View
 				//Добавление контакта в общий список контактов
 				_project.Contacts.Add(newContact);
 				//Обновление списка контактов на форме
-				UpdateListBox();
+				UpdateListBox(newContact);
 			}
-
-			////Создание и вызов формы
-			//ContactForm contactForm = new ContactForm();
-			//contactForm.ShowDialog();
-			////Если пользователь нажал ОК
-			//if (contactForm.DialogResult == DialogResult.OK)
-			//{
-			//	//Взятие данных из формы
-			//	Contact updatedContact = contactForm.Contact;
-			//	//Добавление контакта в общий список контактов
-			//	_project.Contacts.Add(updatedContact);
-			//	//Обновление списка контактов на форме
-			//	UpdateListBox(updatedContact);
-			//}
 		}
 
-		//todo Не выделяет нужный контакт при поиске
 		/// <summary>
 		/// Редактирует выбранный контакт.
 		/// </summary>
 		/// <param name="selectedIndex"></param>
 		private void EditContact(int selectedIndex)
 		{
-			////Контакт, будет изменён
-			//Contact contactClone = _currentProject.Contacts[selectedIndex].CloneContact();
+			//Контакт, который будет изменён
+			Contact contactClone = _currentProject.Contacts[selectedIndex].CloneContact();
 
-			////Вызов формы
-			//ContactForm contactForm = new ContactForm();
-			//contactForm.Contact = contactClone;
-			//contactForm.ShowDialog();
+			//Вызов формы
+			ContactForm contactForm = new ContactForm();
+			contactForm.Contact = contactClone;
+			contactForm.ShowDialog();
 
-			////Если пользователь нажал ОК
-			//if (contactForm.DialogResult == DialogResult.OK)
-			//{
-			//	//Обновлённый контакт
-			//	Contact updatedContact = contactForm.Contact;
+			//Если пользователь нажал ОК
+			if (contactForm.DialogResult == DialogResult.OK)
+			{
+				//Обновлённый контакт
+				Contact updatedContact = contactForm.Contact;
 
-			//	//Индекс изменяемого контакта в project
-			//	int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
-			//	//Замена обновлённого элемента в project
-			//	_project.Contacts[projectIndex] = updatedContact;
-			//	//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
-			//	UpdateListBox(updatedContact);
-			//}
+				//Индекс изменяемого контакта в project
+				int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
+				//Замена обновлённого элемента в project
+				_project.Contacts[projectIndex] = updatedContact;
+
+				//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
+				UpdateListBox(updatedContact);
+			}
 		}
 
 		/// <summary>
@@ -157,23 +148,22 @@ namespace ContactsApp.View
 		/// <param name="index"></param>
 		private void RemoveContact(int selectedIndex)
 		{
-			//if (selectedIndex == -1)
-			//{
-			//	return;
-			//}
-			//DialogResult result = MessageBox.Show("Do you really want to remove " +
-			//	_currentProject.Contacts[selectedIndex].FullName +
-			//	"?", "", MessageBoxButtons.OKCancel);
-			//if (result == DialogResult.OK)
-			//{
-			//	int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
-			//	_project.Contacts.RemoveAt(projectIndex);
-			//	ClearSelectedContact();
-			//}
-			//UpdateListBox();
+			if (selectedIndex == -1)
+			{
+				return;
+			}
+			DialogResult result = MessageBox.Show("Do you really want to remove " +
+				_currentProject.Contacts[selectedIndex].FullName +
+				"?", "", MessageBoxButtons.OKCancel);
+			if (result == DialogResult.OK)
+			{
+				int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
+				_project.Contacts.RemoveAt(projectIndex);
+				ClearSelectedContact();
+			}
+			UpdateListBox();
 		}
 
-		//todo Переделать взятие контакта из продженк а не из карент проджект
 		/// <summary>
 		/// Событие, обновляющее данные на панели справа.
 		/// </summary>
@@ -383,9 +373,15 @@ namespace ContactsApp.View
 		private void contactsListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (contactsListBox.SelectedIndex == -1)
+			{
 				ClearSelectedContact();
+			}
 			else
-				UpdateSelectedContact(contactsListBox.SelectedIndex);
+			{
+				int currentIndex = contactsListBox.SelectedIndex;
+				Contact currentContact = _currentProject.Contacts[currentIndex];
+				UpdateSelectedContact(_project.Contacts.IndexOf(currentContact));
+			}
 		}
 
 		/// <summary>
