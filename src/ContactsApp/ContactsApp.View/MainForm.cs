@@ -1,13 +1,13 @@
 ﻿using ContactsApp.Model;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Reflection;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace ContactsApp.View
 {
+	/// <summary>
+	/// Основная форма программы.
+	/// </summary>
 	public partial class MainForm : Form
 	{
 		/// <summary>
@@ -39,6 +39,19 @@ namespace ContactsApp.View
 			{
 				_currentProject.Contacts.Add(contact.CloneContact());
 			}
+
+			// Поиск по подстроке, если строка поиска не пустая
+			//
+			// ? Я хотел завернуть поиск в if, чтобы лишний раз функция не отрабатывала, НО		?
+			// ? если строчку 52 удалить/закоментировать/завернуть в if, который не выполнится, ?
+			// ? то при клике на элемент в списке элементов на форме программа умирает			?
+			// ? Он не может найти индекс в _currentProject в 74 строке							?
+			//
+			//if (findTextBox.Text != "")
+			//{
+			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
+			//}
+			_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
 		}
 
 		/// <summary>
@@ -49,18 +62,6 @@ namespace ContactsApp.View
 		{
 			UpdateCurrentProject();
 
-			// Поиск по подстроке, если строка поиска не пустая
-			//
-			// ? Я хотел завернуть поиск в if, чтобы лишний раз функция не отрабатывала, НО		?
-			// ? если строчку 61 удалить/закоментировать/завернуть в if, который не выполнится, ?
-			// ? то при клике на элемент в списке элементов на форме программа умирает			?
-			// ? Он не может найти индекс в _currentProject в 87 строке							?
-			//
-			//if (findTextBox.Text != "")
-			//{
-			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
-			//}
-			_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
 			foreach (Contact contact in _currentProject.Contacts)
 			{
 				contactsListBox.Items.Add(contact.FullName);
