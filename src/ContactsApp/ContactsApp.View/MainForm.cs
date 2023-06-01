@@ -1,5 +1,6 @@
 ﻿using ContactsApp.Model;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace ContactsApp.View
 		/// <summary>
 		/// Объект, отвечающий за текущее расположение контактов в списке.
 		/// </summary>
-		private Project _currentProject = new Project();
+		private List<Contact> _currentProject = new List<Contact>();
 
 		/// <summary>
 		/// Главная форма программы.
@@ -26,6 +27,7 @@ namespace ContactsApp.View
 		public MainForm()
 		{
 			InitializeComponent();
+			
 		}
 
 		/// <summary>
@@ -33,25 +35,16 @@ namespace ContactsApp.View
 		/// </summary>
 		public void UpdateCurrentProject()
 		{
-			contactsListBox.Items.Clear();
-			_currentProject.Contacts.Clear();
+			_currentProject.Clear();
 			foreach (Contact contact in _project.Contacts)
 			{
-				_currentProject.Contacts.Add(contact.CloneContact());
+				_currentProject.Add(contact);
 			}
-
-			// Поиск по подстроке, если строка поиска не пустая
-			//
-			// ? Я хотел завернуть поиск в if, чтобы лишний раз функция не отрабатывала, НО		?
-			// ? если строчку 52 удалить/закоментировать/завернуть в if, который не выполнится, ?
-			// ? то при клике на элемент в списке элементов на форме программа умирает			?
-			// ? Он не может найти индекс в _currentProject в 74 строке							?
-			//
-			//if (findTextBox.Text != "")
-			//{
-			_currentProject.Contacts = _currentProject.FindContactBySubString(_project.Contacts, findTextBox.Text);
-			//}
-			_currentProject.Contacts = _currentProject.SortContactsByFullName(_currentProject.Contacts);
+			if (findTextBox.Text != "")
+			{
+				_currentProject = _project.FindContactBySubString(_project.Contacts, findTextBox.Text);
+			}
+			_currentProject = _project.SortContactsByFullName(_currentProject);
 		}
 
 		/// <summary>
@@ -60,9 +53,10 @@ namespace ContactsApp.View
 		/// <param name="selectedContact">Контакт, который нужно выделить в списке.</param>
 		private void UpdateListBox(Contact selectedContact = null)
 		{
+			contactsListBox.Items.Clear();
 			UpdateCurrentProject();
 
-			foreach (Contact contact in _currentProject.Contacts)
+			foreach (Contact contact in _currentProject)
 			{
 				contactsListBox.Items.Add(contact.FullName);
 			}
@@ -70,7 +64,7 @@ namespace ContactsApp.View
 			if (selectedContact != null)
 			{
 				int projectIndex = _project.Contacts.IndexOf(selectedContact);
-				int selectedIndex = _currentProject.Contacts.IndexOf(selectedContact);
+				int selectedIndex = _currentProject.IndexOf(selectedContact);
 				contactsListBox.SelectedIndex = selectedIndex;
 				UpdateSelectedContact(projectIndex);
 			}
@@ -105,7 +99,7 @@ namespace ContactsApp.View
 		private void EditContact(int selectedIndex)
 		{
 			//Контакт, который будет изменён
-			Contact contactClone = _currentProject.Contacts[selectedIndex].CloneContact();
+			Contact contactClone = _currentProject[selectedIndex].CloneContact();
 			//Вызов формы
 			ContactForm contactForm = new ContactForm();
 			contactForm.Contact = contactClone;
@@ -116,7 +110,7 @@ namespace ContactsApp.View
 				//Обновлённый контакт
 				Contact updatedContact = contactForm.Contact;
 				//Индекс изменяемого контакта в project
-				int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
+				int projectIndex = _project.Contacts.IndexOf(_currentProject[selectedIndex]);
 				//Замена обновлённого элемента в project
 				_project.Contacts[projectIndex] = updatedContact;
 				//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
@@ -135,11 +129,11 @@ namespace ContactsApp.View
 				return;
 			}
 			DialogResult result = MessageBox.Show("Do you really want to remove " +
-				_currentProject.Contacts[selectedIndex].FullName +
+				_currentProject[selectedIndex].FullName +
 				"?", "", MessageBoxButtons.OKCancel);
 			if (result == DialogResult.OK)
 			{
-				int projectIndex = _project.Contacts.IndexOf(_currentProject.Contacts[selectedIndex]);
+				int projectIndex = _project.Contacts.IndexOf(_currentProject[selectedIndex]);
 				_project.Contacts.RemoveAt(projectIndex);
 				ClearSelectedContact();
 			}
@@ -361,7 +355,7 @@ namespace ContactsApp.View
 			else
 			{
 				int currentIndex = contactsListBox.SelectedIndex;
-				Contact currentContact = _currentProject.Contacts[currentIndex];
+				Contact currentContact = _currentProject[currentIndex];
 				UpdateSelectedContact(_project.Contacts.IndexOf(currentContact));
 			}
 		}
