@@ -50,23 +50,14 @@ namespace ContactsApp.Model
 		/// <param name="contacts">Список контактов.</param>
 		/// <param name="subString">Искомая подстрока.</param>
 		/// <returns></returns>
-		public List<Contact> FindContactBySubString(List<Contact> contacts, string subString)
+		public List<Contact> FindContactBySubString(List<Contact> contacts, string substring)
 		{
 			List<Contact> result = new List<Contact>();
 			foreach (Contact contact in contacts)
-				if (contact.FullName.Contains(subString))
-				{
-					result.Add(contact);
-				}
-				else if (contact.Email.Contains(subString))
-				{
-					result.Add(contact);
-				}
-				else if (contact.Phone.Contains(subString))
-				{
-					result.Add(contact);
-				}
-				else if (contact.VKID.Contains(subString))
+				if (contact.FullName.Contains(substring) || 
+					contact.Email.Contains(substring) || 
+					contact.Phone.Contains(substring) ||
+					contact.VKID.Contains(substring))
 				{
 					result.Add(contact);
 				}
