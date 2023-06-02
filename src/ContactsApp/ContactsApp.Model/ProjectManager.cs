@@ -7,10 +7,18 @@ namespace ContactsApp.Model
 {
 	public static class ProjectManager
 	{
+		/// <summary>
+		/// Пусть файла, где хранится информация.
+		/// </summary>
 		static string Filename { get; set; } = 
 			Environment.GetFolderPath(SpecialFolder.ApplicationData) + 
 			"\\Oxingert\\ContactsApp\\userdata.json";
-		static void SaveToFile(Project project)
+
+		/// <summary>
+		/// Функция сохранения в файл.
+		/// </summary>
+		/// <param name="project"></param>
+		public static void SaveToFile(Project project)
 		{
 			//Создаём экземпляр сериализатора
 			JsonSerializer serializer = new JsonSerializer();
@@ -30,7 +38,11 @@ namespace ContactsApp.Model
 
 		}
 
-		static Project LoadFromFile()
+		/// <summary>
+		/// Функция загрузки информации из файла.
+		/// </summary>
+		/// <returns></returns>
+		public static Project LoadFromFile()
 		{
 			//Создаём переменную, в которую поместим результат десериализации
 			Project project = null;
