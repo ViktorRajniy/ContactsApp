@@ -27,7 +27,42 @@ namespace ContactsApp.View
 		public MainForm()
 		{
 			InitializeComponent();
-			
+			UpdateBirthdayString();
+		}
+
+		/// <summary>
+		/// Обновляет строку именинников
+		/// </summary>
+		public void UpdateBirthdayString()
+		{
+			List<Contact> birthdayList = new List<Contact>();
+			birthdayList = _project.FindBirthdays(_project.Contacts);
+			string birthdayString = "";
+			if (birthdayList.Count != 0)
+			{
+				birthdayString = birthdayList[0].FullName + ".";
+				if (birthdayList.Count > 1)
+				{
+					for (int i = 1; i < birthdayList.Count; i++)
+					{
+						if(birthdayString.Length + 2 + birthdayList[i].FullName.Length < 50)
+						{
+							birthdayString = birthdayList[i].FullName + ", " + birthdayString;
+						}
+						else
+						{
+							birthdayString += "...";
+							break;
+						}
+					}
+				}
+				birthdaySurnamesLabel.Text = birthdayString;
+			}
+			else
+			{
+				birthdaySurnamesLabel.Text = "No one has a birthday today.";
+			}
+
 		}
 
 		/// <summary>
