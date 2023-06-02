@@ -27,6 +27,8 @@ namespace ContactsApp.View
 		public MainForm()
 		{
 			InitializeComponent();
+			_project = ProjectManager.LoadFromFile();
+			UpdateListBox();
 			UpdateBirthdayString();
 		}
 
@@ -124,6 +126,7 @@ namespace ContactsApp.View
 				_project.Contacts.Add(newContact);
 				//Обновление списка контактов на форме
 				UpdateListBox(newContact);
+				ProjectManager.SaveToFile(_project);
 			}
 		}
 
@@ -150,6 +153,7 @@ namespace ContactsApp.View
 				_project.Contacts[projectIndex] = updatedContact;
 				//Обновление списка контактов. Отправка контакта, чтобы найти его в списке currentProject
 				UpdateListBox(updatedContact);
+				ProjectManager.SaveToFile(_project);
 			}
 		}
 
@@ -171,8 +175,9 @@ namespace ContactsApp.View
 				int projectIndex = _project.Contacts.IndexOf(_currentProject[selectedIndex]);
 				_project.Contacts.RemoveAt(projectIndex);
 				ClearSelectedContact();
+				UpdateListBox();
+				ProjectManager.SaveToFile(_project);
 			}
-			UpdateListBox();
 		}
 
 		/// <summary>
@@ -404,7 +409,10 @@ namespace ContactsApp.View
 		{
 			DialogResult result = MessageBox.Show("Do you really want to leave?", "", MessageBoxButtons.OKCancel);
 			if (result == DialogResult.Cancel)
+			{
+				ProjectManager.SaveToFile(_project);
 				e.Cancel = true;
+			}
 		}
 
 		/// <summary>
