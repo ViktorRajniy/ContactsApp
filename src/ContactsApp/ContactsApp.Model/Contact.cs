@@ -194,7 +194,7 @@ namespace ContactsApp.Model
 		/// <param name="email">Электронная почта.</param>
 		/// <param name="phone">Номер телефона.</param>
 		/// <param name="dateOfBirth">Дата рождения.</param>
-		/// <param name="vk	Id">Ссылка на ВКонтакте.</param>
+		/// <param name="vkId">Ссылка на ВКонтакте.</param>
 		public Contact(
 			string fullName,
 			string email,
