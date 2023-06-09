@@ -152,9 +152,9 @@
 			this.AuthorNameLable.Location = new System.Drawing.Point(81, 76);
 			this.AuthorNameLable.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
 			this.AuthorNameLable.Name = "AuthorNameLable";
-			this.AuthorNameLable.Size = new System.Drawing.Size(86, 15);
+			this.AuthorNameLable.Size = new System.Drawing.Size(92, 15);
 			this.AuthorNameLable.TabIndex = 8;
-			this.AuthorNameLable.Text = "Viktor Oxingert";
+			this.AuthorNameLable.Text = "Viktor Oksingert";
 			// 
 			// GithubLinkLable
 			// 
