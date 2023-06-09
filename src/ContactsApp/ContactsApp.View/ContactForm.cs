@@ -79,7 +79,7 @@ namespace ContactsApp.View
 			"Enter your name",
 			"Enter your e-mail",
 			"+0(000)-000-00-00",
-			DateTime.Today,
+			new DateTime(2023,1,1),
 			"http://vk.com");
 
 		public Contact Contact

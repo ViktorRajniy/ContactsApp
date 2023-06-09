@@ -191,7 +191,7 @@ namespace ContactsApp.View
 			emailTextBox.Text = contact.Email;
 			phoneTextBox.Text = contact.Phone;
 			vkTextBox.Text = contact.VKID;
-			dateBirthTextBox.Text = contact.DateOfBirth.ToString();
+			dateBirthTextBox.Text = contact.DateOfBirth.ToShortDateString();
 		}
 
 		/// <summary>
