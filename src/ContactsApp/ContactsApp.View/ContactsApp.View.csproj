@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ContactsApp_96x96.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\ContactsApp_96x96.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -111,7 +111,7 @@
     <None Include="Resources\remove_contact_32x32_gray.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ContactsApp_96x96.ico" />
+    <Content Include="Resources\ContactsApp_96x96.ico" />
     <None Include="Resources\remove_contact_32x32.png" />
     <None Include="Resources\edit_contact_32x32.png" />
     <None Include="Resources\collapse_32x32.png" />
